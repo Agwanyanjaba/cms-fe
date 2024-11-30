@@ -1,8 +1,8 @@
 import Single from "../../components/single/Single"
 import { singleUser } from "../../data"
-import "./user.scss"
+import "./staff.scss"
 
-const User = () => {
+const Staff = () => {
 
   //Fetch data and send to Single Component
   
@@ -13,4 +13,4 @@ const User = () => {
   )
 }
 
-export default User
+export default Staff;

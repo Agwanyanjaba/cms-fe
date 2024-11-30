@@ -1,18 +1,18 @@
 import Home from "./pages/home/Home";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Users from "./pages/users/Users";
-import Products from "./pages/products/Products";
+import Staffs from "./pages/users/Staffs.tsx";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Menu from "./components/menu/Menu";
 import Login from "./pages/login/Login";
 import "./styles/global.scss";
-import User from "./pages/user/User";
+import Staff from "./pages/user/Staff.tsx";
 import Product from "./pages/product/Product";
 import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import Courses from "./pages/courses/Courses.tsx";
 
 
 const queryClient = new QueryClient();
@@ -47,16 +47,16 @@ function App() {
           element: <Home />,
         },
         {
-          path: "/users",
-          element: <Users />,
+          path: "/staff",
+          element: <Staffs />,
         },
         {
-          path: "/products",
-          element: <Products />,
+          path: "/courses",
+          element: <Courses />,
         },
         {
-          path: "/users/:id",
-          element: <User />,
+          path: "/staff/:id",
+          element: <Staff />,
         },
         {
           path: "/products/:id",

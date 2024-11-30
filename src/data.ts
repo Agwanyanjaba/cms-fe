@@ -12,7 +12,7 @@ export const menu = [
       {
         id: 2,
         title: "Profile",
-        url: "/users/1",
+        url: "/staff/1",
         icon: "user.svg",
       },
     ],
@@ -23,22 +23,10 @@ export const menu = [
     listItems: [
       {
         id: 1,
-        title: "Add New Staff",
-        url: "/users",
+        title: "View All Staff",
+        url: "/staff",
         icon: "user.svg",
       },
-      {
-        id: 2,
-        title: "View All Staff",
-        url: "/products",
-        icon: "product.svg",
-      },
-      {
-        id: 3,
-        title: "Edit or Remove Staff",
-        url: "/orders",
-        icon: "order.svg",
-      }
     ],
   },
   {
@@ -101,8 +89,8 @@ export const menu = [
     listItems: [
       {
         id: 1,
-        title: "Add Course",
-        url: "/",
+        title: "View Courses",
+        url: "/courses",
         icon: "setting.svg",
       },
       {
@@ -214,7 +202,7 @@ export const topDealUsers = [
 export const chartBoxUser = {
   color: "#8884d8",
   icon: "/userIcon.svg",
-  title: "Total Users",
+  title: "Total Staffs",
   number: "11.238",
   dataKey: "users",
   percentage: 45,
@@ -522,7 +510,7 @@ export const products = [
   },
   {
     id: 3,
-    img: "http://images.samsung.com/is/image/samsung/uk-led-tv-hg40ed670ck-hg40ed670ckxxu-001-front",
+    img: "https://images.samsung.com/is/image/samsung/uk-led-tv-hg40ed670ck-hg40ed670ckxxu-001-front",
     title: "Samsung TV 4K SmartTV",
     color: "gray",
     producer: "Samsung",
@@ -596,6 +584,33 @@ export const products = [
     price: "$599.99",
     createdAt: "01.02.2023",
     inStock: true,
+  },
+];
+
+export const courses = [
+  {
+    id: 1,
+    title: "BSc Computer Science",
+    duration: 3,
+    department: "Science and Technology",
+    createdAt: "2024-01-01",
+    enrolled: 120,
+  },
+  {
+    id: 2,
+    title: "LLB Law",
+    duration: 4,
+    department: "Law",
+    createdAt: "2024-02-01",
+    enrolled: 80,
+  },
+  {
+    id: 3,
+    title: "BA Arts",
+    duration: 3,
+    department: "Arts and Humanities",
+    createdAt: "2024-03-01",
+    enrolled: 150,
   },
 ];
 
