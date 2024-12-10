@@ -1,15 +1,49 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Assuming you're using React Router for navigation
 import "./login.scss";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("Student");
+  const navigate = useNavigate(); // React Router hook for navigation
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here (e.g., API call)
-    console.log("Email:", email, "Password:", password, "Role:", role);
+
+    const loginData = {
+      username: email, // Map email to "username"
+      password: password,
+    };
+
+    try {
+      const response = await fetch("http://localhost:9999/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Login failed. Please check your credentials.");
+      }
+
+      const result = await response.json();
+
+      // Store the session token (or other data) in localStorage
+      if (result.token) {
+        localStorage.setItem("authToken", result.token); // Or use sessionStorage if it's a temporary session
+        console.log("Login successful, token stored:", result.token);
+      } else {
+        throw new Error("No token received from server.");
+      }
+
+      // Redirect to the home page
+      navigate("/");
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("Login failed. Please try again.");
+    }
   };
 
   return (
@@ -38,19 +72,6 @@ const Login = () => {
                   placeholder="Enter your password"
                   required
               />
-            </div>
-            <div className="form-group">
-              <label htmlFor="role">Role</label>
-              <select
-                  id="role"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  required
-              >
-                <option value="Student">Student</option>
-                <option value="Staff">Staff</option>
-                <option value="Admin">Admin</option>
-              </select>
             </div>
             <button type="submit" className="login-button">
               Login

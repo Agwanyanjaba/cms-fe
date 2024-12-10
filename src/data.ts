@@ -12,7 +12,7 @@ export const menu = [
       {
         id: 2,
         title: "Profile",
-        url: "/staff/1",
+        url: "/staff/{username}",
         icon: "user.svg",
       },
     ],
@@ -41,14 +41,20 @@ export const menu = [
       },
       {
         id: 2,
+        title: "Pending applications",
+        url: "/studentapps",
+        icon: "form.svg",
+      },
+      {
+        id: 3,
         title: "Filter applications",
         url: "/",
         icon: "note.svg",
       },
       {
-        id: 3,
+        id: 4,
         title: "Approve/decline applications.",
-        url: "/",
+        url: "/studentapps",
         icon: "form.svg",
       }
     ]
@@ -60,26 +66,20 @@ export const menu = [
       {
         id: 1,
         title: "View All Students",
-        url: "/",
+        url: "/students",
         icon: "element.svg",
       },
       {
         id: 2,
         title: "Edit Deactivate Student",
-        url: "/",
+        url: "/deactivate",
         icon: "note.svg",
       },
       {
         id: 3,
         title: "Search Student",
-        url: "/",
+        url: "/studentid",
         icon: "form.svg",
-      },
-      {
-        id: 4,
-        title: "Calendar",
-        url: "/",
-        icon: "calendar.svg",
       },
     ],
   },
@@ -96,55 +96,55 @@ export const menu = [
       {
         id: 2,
         title: "Edit Course",
-        url: "/",
+        url: "/edit/couseid",
         icon: "backup.svg",
       },
       {
         id: 3,
         title: "Delete Course",
-        url: "/",
+        url: "/delete/couseid",
         icon: "backup.svg",
       },
     ],
   },
-  {
-    id:6,
-    title: "Reports",
-    listItems: [
-      {
-        id: 1,
-        title: "Generate Report",
-        url: "/",
-        icon: "downaload.svg",
-      },
-      {
-        id: 2,
-        title: "Export Report",
-        url: "/",
-        icon: "export.svg",
-      }
-    ]
+  // {
+  //   id:6,
+  //   title: "Reports",
+  //   listItems: [
+  //     {
+  //       id: 1,
+  //       title: "Generate Report",
+  //       url: "/",
+  //       icon: "downaload.svg",
+  //     },
+  //     {
+  //       id: 2,
+  //       title: "Export Report",
+  //       url: "/",
+  //       icon: "export.svg",
+  //     }
+  //   ]
+  //
+  // },
 
-  },
-
-  {
-    id: 7,
-    title: "analytics",
-    listItems: [
-      {
-        id: 1,
-        title: "Charts",
-        url: "/",
-        icon: "chart.svg",
-      },
-      {
-        id: 2,
-        title: "Logs",
-        url: "/",
-        icon: "log.svg",
-      },
-    ],
-  },
+  // {
+  //   id: 7,
+  //   title: "analytics",
+  //   listItems: [
+  //     {
+  //       id: 1,
+  //       title: "Charts",
+  //       url: "/",
+  //       icon: "chart.svg",
+  //     },
+  //     {
+  //       id: 2,
+  //       title: "Logs",
+  //       url: "/",
+  //       icon: "log.svg",
+  //     },
+  //   ],
+  // },
 ];
 
 export const topDealUsers = [
@@ -202,10 +202,10 @@ export const topDealUsers = [
 export const chartBoxUser = {
   color: "#8884d8",
   icon: "/userIcon.svg",
-  title: "Total Staffs",
-  number: "11.238",
+  title: "Total Staff",
+  number: "24",
   dataKey: "users",
-  percentage: 45,
+  percentage: 4,
   chartData: [
     { name: "Sun", users: 400 },
     { name: "Mon", users: 600 },
@@ -220,7 +220,7 @@ export const chartBoxUser = {
 export const chartBoxProduct = {
   color: "skyblue",
   icon: "/productIcon.svg",
-  title: "Total Products",
+  title: "Total Students",
   number: "238",
   dataKey: "products",
   percentage: 21,
@@ -237,10 +237,9 @@ export const chartBoxProduct = {
 export const chartBoxRevenue = {
   color: "teal",
   icon: "/revenueIcon.svg",
-  title: "Total Revenue",
-  number: "$56.432",
+  title: "Total Departments",
+  number: "4",
   dataKey: "revenue",
-  percentage: -12,
   chartData: [
     { name: "Sun", revenue: 1000 },
     { name: "Mon", revenue: 600 },
@@ -254,10 +253,9 @@ export const chartBoxRevenue = {
 export const chartBoxConversion = {
   color: "gold",
   icon: "/conversionIcon.svg",
-  title: "Total Ratio",
-  number: "2.6",
+  title: "Total Courses",
+  number: "5",
   dataKey: "ratio",
-  percentage: 12,
   chartData: [
     { name: "Sun", ratio: 400 },
     { name: "Mon", ratio: 600 },

@@ -5,35 +5,37 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Menu from "./components/menu/Menu";
 import Login from "./pages/login/Login";
-import "./styles/global.scss";
 import Staff from "./pages/user/Staff.tsx";
 import Product from "./pages/product/Product";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
 import Courses from "./pages/courses/Courses.tsx";
+import Register from "./pages/register/Register.tsx";
+import "./styles/global.scss";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import StudentHome from "./pages/studenthome/StudentHome.tsx";
+import StudentForm from "./components/student/Student.tsx";
+import { AuthProvider } from "./components/utils/AuthProvider.tsx";
+import Landing from "./pages/landing/Landing.tsx";
+import About from "./pages/about/About.tsx";
+import ExploreCourses from "./pages/about/ExploreCourses.tsx";
 
-
+// Create the QueryClient instance outside of the Layout component
 const queryClient = new QueryClient();
 
 function App() {
   const Layout = () => {
     return (
-      <div className="main">
-        <Navbar />
-        <div className="container">
-          <div className="menuContainer">
-            <Menu />
-          </div>
-          <div className="contentContainer">
-            <QueryClientProvider client={queryClient}>
+        <div className="main">
+          <Navbar />
+          <div className="container">
+            <div className="menuContainer">
+              <Menu />
+            </div>
+            <div className="contentContainer">
               <Outlet />
-            </QueryClientProvider>
+            </div>
           </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
     );
   };
 
@@ -42,35 +44,31 @@ function App() {
       path: "/",
       element: <Layout />,
       children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/staff",
-          element: <Staffs />,
-        },
-        {
-          path: "/courses",
-          element: <Courses />,
-        },
-        {
-          path: "/staff/:id",
-          element: <Staff />,
-        },
-        {
-          path: "/products/:id",
-          element: <Product />,
-        },
+        { path: "/", element: <Home /> },
+        { path: "/staff", element: <Staffs /> },
+        { path: "/courses", element: <Courses /> },
+        { path: "/staff/:id", element: <Staff /> },
+        { path: "/products/:id", element: <Product /> },
+        { path: "/departments", element: <Product /> },
       ],
     },
-    {
-      path: "/login",
-      element: <Login />,
-    },
+    { path: "/login", element: <Login /> },
+    { path: "/register", element: <Register /> },
+    { path: "/studenthome", element: <StudentHome /> },
+    { path: "/student", element: <StudentForm /> },
+    {path:"/landing", element: <Landing/>},
+    {path:"/about-us", element: <About/>},
+    {path:"/explore-courses", element: <ExploreCourses/>}
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+      // Wrap your entire application with QueryClientProvider
+      <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+  </AuthProvider>
+  );
 }
 
 export default App;

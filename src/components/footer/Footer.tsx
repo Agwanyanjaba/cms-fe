@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <span></span>
-      <span>Powered by Wybosoft © {currentYear} . Admin Dashboard</span>
+      <span>Powered by Wybosoft © {currentYear} . Dashboard</span>
     </div>
   )
 }
