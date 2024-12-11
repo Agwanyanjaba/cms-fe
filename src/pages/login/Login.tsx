@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Assuming you're using React Router for navigation
 import "./login.scss";
+import {jwtDecode} from "jwt-decode";
 
 const Login = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:9999";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate(); // React Router hook for navigation
@@ -16,7 +18,7 @@ const Login = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:9999/api/v1/auth/login", {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,8 +40,16 @@ const Login = () => {
         throw new Error("No token received from server.");
       }
 
-      // Redirect to the home page
-      navigate("/");
+      // Decode the token to get the role
+      const decodedToken: any = jwtDecode(result.token); // Decoded payload
+      const role = decodedToken.role;
+
+      // Redirect based on role
+      if (role === "Student") {
+        navigate("/student"); // Redirect to student dashboard
+      } else {
+        navigate("/"); // Redirect to home for other roles
+      }
     } catch (error) {
       console.error("Error during login:", error);
       alert("Login failed. Please try again.");

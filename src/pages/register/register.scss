@@ -1,10 +1,11 @@
-// SCSS Variables
-$primary-color: #4c79af;
+// SCSS Variables for Dark Theme
+$primary-color: #4c79af; // This stays the same for buttons and other primary elements
 $hover-color: darken($primary-color, 10%);
-$text-color: #333;
-$background-color: #f7f7f7;
+$text-color: #f0f0f0; // Lighter color for text on dark backgrounds
+$background-color: #2a3447; // Dark background for the page
 $error-color: #ff5252;
 
+// Dark theme styling for the login container
 .login-container {
   display: flex;
   justify-content: center;
@@ -13,16 +14,16 @@ $error-color: #ff5252;
   background-color: $background-color;
 
   .login-card {
-    background: #fff;
+    background: #3a4a64; // Slightly lighter background for the card
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // Darker shadow for a more pronounced effect
     width: 100%;
     max-width: 400px;
     text-align: center;
 
     h2 {
-      color: $text-color;
+      color: $text-color; // Light text color
       margin-bottom: 1.5rem;
       font-size: 1.5rem;
       font-weight: bold;
@@ -40,7 +41,7 @@ $error-color: #ff5252;
           display: block;
           font-weight: bold;
           margin-bottom: 0.5rem;
-          color: $text-color;
+          color: $text-color; // Light color for labels
         }
 
         input,
@@ -50,6 +51,8 @@ $error-color: #ff5252;
           border: 1px solid #ccc;
           border-radius: 4px;
           font-size: 1rem;
+          background-color: #2a3447; // Dark background for inputs
+          color: $text-color; // Light text color in input fields
 
           &:focus {
             border-color: $primary-color;
@@ -59,8 +62,8 @@ $error-color: #ff5252;
         }
 
         select {
-          background-color: #fff;
-          color: $text-color;
+          background-color: #2a3447; // Dark background for select dropdowns
+          color: $text-color; // Light text color in select dropdowns
           appearance: none;
         }
       }

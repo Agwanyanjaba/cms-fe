@@ -1,9 +1,18 @@
 import "./navbar.scss";
 import { useAuth } from '../utils/AuthProvider';
-
+import {useNavigate} from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const auth = useAuth();
+
+    const handleLogout = () =>{
+        localStorage.removeItem("authToken");
+        sessionStorage.removeItem("authToken");
+
+        navigate("/login");
+    }
+
   return (
     <div className="navbar">
       <div className="logo">
@@ -11,14 +20,12 @@ const Navbar = () => {
         <span>Kaive International Training College</span>
       </div>
         <div className="icons">
-            <img src="/search.svg" alt="" className="icon"/>
-            {/*<img src="/app.svg" alt="" className="icon"/>*/}
-            {/*<img src="/expand.svg" alt="" className="icon"/>*/}
+
             <div className="user">
                 <span>{auth.user?.role}</span>
                 <span>{auth.user?.username}</span>
             </div>
-            <button className="large-button" onClick={() => navigator}>
+            <button className="large-button" onClick={handleLogout}>
                 Logout
             </button>
         </div>

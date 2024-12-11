@@ -10,9 +10,16 @@
   .logo {
     display: flex;
     align-items: center;
-    font-weight: bold;
-    gap: 10px;
-    border-radius: 50%;
+    justify-content: center;
+    margin-bottom: 15px;
+
+    img {
+      width: 120px; /* Increased size for larger logo */
+      height: 120px;
+      border-radius: 50%; /* Makes the image circular */
+      border: 2px solid white; /* Optional border for emphasis */
+      margin-right: 15px; /* Spacing between image and text */
+    }
   }
   .icons {
     display: flex;

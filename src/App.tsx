@@ -1,4 +1,5 @@
 import Home from "./pages/home/Home";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Staffs from "./pages/users/Staffs.tsx";
 import Navbar from "./components/navbar/Navbar";
@@ -10,7 +11,6 @@ import Product from "./pages/product/Product";
 import Courses from "./pages/courses/Courses.tsx";
 import Register from "./pages/register/Register.tsx";
 import "./styles/global.scss";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import StudentHome from "./pages/studenthome/StudentHome.tsx";
 import StudentForm from "./components/student/Student.tsx";
 import { AuthProvider } from "./components/utils/AuthProvider.tsx";

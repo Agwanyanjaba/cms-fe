@@ -55,20 +55,20 @@ const HomeScreen = () => {
                 </div>
 
                 {/* Adverts Section */}
-                <section className="adverts">
-                    <div className="advert">
-                        <img src="https://via.placeholder.com/200x200" alt="Advert 1" />
-                        <p>Join our top-rated courses today!</p>
-                    </div>
-                    <div className="advert">
-                        <img src="https://via.placeholder.com/200x200" alt="Advert 2" />
-                        <p>Unlock premium content with a subscription.</p>
-                    </div>
-                    <div className="advert">
-                        <img src="https://via.placeholder.com/200x200" alt="Advert 3" />
-                        <p>Sign up and get exclusive offers.</p>
-                    </div>
-                </section>
+                {/*<section className="adverts">*/}
+                {/*    <div className="advert">*/}
+                {/*        <img src="https://via.placeholder.com/200x200" alt="Advert 1" />*/}
+                {/*        <p>Join our top-rated courses today!</p>*/}
+                {/*    </div>*/}
+                {/*    <div className="advert">*/}
+                {/*        <img src="https://via.placeholder.com/200x200" alt="Advert 2" />*/}
+                {/*        <p>Unlock premium content with a subscription.</p>*/}
+                {/*    </div>*/}
+                {/*    <div className="advert">*/}
+                {/*        <img src="https://via.placeholder.com/200x200" alt="Advert 3" />*/}
+                {/*        <p>Sign up and get exclusive offers.</p>*/}
+                {/*    </div>*/}
+                {/*</section>*/}
             </div>
             <Footer />
         </>

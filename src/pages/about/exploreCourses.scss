@@ -1,22 +1,76 @@
-@import "../../styles/variables.scss";
-@import "../../styles/responsive.scss";
-@import "../../styles/global.scss";
-
 .explore-courses {
-  padding: 20px;
-  text-align: center;
+  .hero {
+    padding: 50px 20px;
+    background: linear-gradient(to right, #3f51b5, #1e88e5);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
 
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+
+      img {
+        width: 120px; /* Increased size for larger logo */
+        height: 120px;
+        border-radius: 50%; /* Makes the image circular */
+        border: 2px solid white; /* Optional border for emphasis */
+        margin-right: 15px; /* Spacing between image and text */
+      }
+
+      span {
+        font-size: 2rem; /* Increased font size */
+        font-weight: bold;
+        color: white;
+      }
+    }
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
+  .buttons {
+    display: flex;
+    justify-content: center; /* Horizontally center the buttons */
+    align-items: center; /* Vertically center the buttons */
+    gap: 20px; /* Add space between the buttons */
+    margin-top: 30px;
+  }
 
-    li {
+  .large-button {
+    width: 200px;
+    height: 60px;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #384256;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .large-button:hover {
+    background-color: #0056b3;
+  }
+
+  .content {
+    padding: 20px;
+    text-align: center;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        font-size: 1.2rem;
+        margin: 10px 0;
+      }
+    }
+
+    p {
       font-size: 1.2rem;
+      line-height: 1.8;
       margin: 10px 0;
     }
   }
