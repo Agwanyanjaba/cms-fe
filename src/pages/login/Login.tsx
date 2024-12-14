@@ -43,6 +43,8 @@ const Login = () => {
       // Decode the token to get the role
       const decodedToken: any = jwtDecode(result.token); // Decoded payload
       const role = decodedToken.role;
+      console.log("Decoded token:", decodedToken);
+      console.log("role:", role);
 
       // Redirect based on role
       if (role === "Student") {

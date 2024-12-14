@@ -17,6 +17,7 @@ import { AuthProvider } from "./components/utils/AuthProvider.tsx";
 import Landing from "./pages/landing/Landing.tsx";
 import About from "./pages/about/About.tsx";
 import ExploreCourses from "./pages/about/ExploreCourses.tsx";
+import StudentsList from "./pages/students/StudentsList.tsx";
 
 // Create the QueryClient instance outside of the Layout component
 const queryClient = new QueryClient();
@@ -58,7 +59,8 @@ function App() {
     { path: "/student", element: <StudentForm /> },
     {path:"/landing", element: <Landing/>},
     {path:"/about-us", element: <About/>},
-    {path:"/explore-courses", element: <ExploreCourses/>}
+    {path:"/explore-courses", element: <ExploreCourses/>},
+    {path:"/students", element: <StudentsList/>}
   ]);
 
   return (

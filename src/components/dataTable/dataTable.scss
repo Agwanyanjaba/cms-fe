@@ -1,28 +1,85 @@
-.dataTable{
+.dataTable {
+  width: 100%; /* Make the data table take the full width of the container */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in element's width */
+  overflow-x: auto; /* Allow horizontal scrolling if needed */
+  margin: 0 auto; /* Center the table container */
 
-  .dataGrid{
+  .dataGrid {
     background: white;
     padding: 20px;
+    width: 100%; /* Ensure the grid fits within the container */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow for better visuals */
 
-    .MuiDataGrid-toolbarContainer{
-      flex-direction: row-reverse;
+    /* Toolbar styles */
+    .MuiDataGrid-toolbarContainer {
+      flex-direction: row-reverse; /* Move the toolbar actions to the right */
+      gap: 10px;
     }
 
-    img{
+    /* Style for avatar images */
+    img {
       width: 32px;
       height: 32px;
       border-radius: 50%;
       object-fit: cover;
     }
 
-    .action{
+    /* Action button container */
+    .action {
       display: flex;
       gap: 15px;
 
-      img{
+      img {
         width: 20px;
         height: 20px;
         cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1); /* Slight zoom on hover */
+        }
+      }
+    }
+
+    /* Responsive font sizes */
+    .MuiDataGrid-cell {
+      font-size: 14px;
+    }
+    .MuiDataGrid-columnHeaders {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    padding: 10px;
+
+    .dataGrid {
+      padding: 10px;
+
+      .MuiDataGrid-cell {
+        font-size: 12px; /* Reduce font size for compact layout */
+      }
+      .MuiDataGrid-columnHeaders {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 5px;
+
+    .dataGrid {
+      padding: 5px;
+
+      .MuiDataGrid-cell {
+        font-size: 10px; /* Further reduce font size for small screens */
+      }
+      .MuiDataGrid-columnHeaders {
+        font-size: 12px;
       }
     }
   }

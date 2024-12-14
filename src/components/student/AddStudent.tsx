@@ -64,9 +64,18 @@ const AddStudent = (props: Props) => {
                         ))}
                     {/* File input for ID */}
                     <div className="item">
-                        <label>Upload ID</label>
+                        <label>Upload ID [Front]</label>
                         <input
                             name="idDoc"
+                            type="file"
+                            accept="application/pdf,image/*"
+                            required
+                        />
+                    </div>
+                    <div className="item">
+                        <label>Upload ID [Back]</label>
+                        <input
+                            name="idDoc2"
                             type="file"
                             accept="application/pdf,image/*"
                             required
