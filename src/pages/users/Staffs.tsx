@@ -1,9 +1,9 @@
 import { GridColDef } from "@mui/x-data-grid";
-import DataTable from "../../components/dataTable/DataTable";
 import "./staffs.scss";
 import { useState } from "react";
 import Add from "../../components/add/Add";
 import { userRows } from "../../data";
+import DataTableV1 from "../../components/dataTable/DataTableV1.tsx";
 // import { useQuery } from "@tanstack/react-query";
 
 const columns: GridColDef[] = [
@@ -73,7 +73,7 @@ const Staffs = () => {
         <h1>Staff</h1>
         <button onClick={() => setOpen(true)}>Add New Staff</button>
       </div>
-      <DataTable slug="users" columns={columns} rows={userRows} />
+      <DataTableV1 columns={columns} rows={userRows} />
       {/* TEST THE API */}
 
       {/* {isLoading ? (
@@ -81,7 +81,7 @@ const Staffs = () => {
       ) : (
         <DataTable slug="users" columns={columns} rows={data} />
       )} */}
-      {open && <Add slug="Staff" columns={columns} setOpen={setOpen} />}
+      {open && <Add columns={columns} setOpen={setOpen} />}
     </div>
   );
 };

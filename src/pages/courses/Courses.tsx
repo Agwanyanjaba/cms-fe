@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./Courses.scss";
-import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/add/Add";
 import { GridColDef } from "@mui/x-data-grid";
 import { courses } from "../../data";
+import DataTableV1 from "../../components/dataTable/DataTableV1.tsx";
 
 const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 90 },
@@ -57,14 +57,14 @@ const Courses = () => {
                 <h1>Courses</h1>
                 <button onClick={() => setOpen(true)}>Add New Course</button>
             </div>
-            <DataTable slug="course" columns={columns} rows={courses} />
+            <DataTableV1 columns={columns} rows={courses} />
             {/* TEST THE API */}
             {/* {isLoading ? (
         "Loading..."
       ) : (
         <DataTable slug="course" columns={columns} rows={data} />
       )} */}
-            {open && <Add slug="course" columns={columns} setOpen={setOpen} />}
+            {open && <Add columns={columns} setOpen={setOpen} />}
         </div>
     );
 };

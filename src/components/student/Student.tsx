@@ -1,13 +1,12 @@
 import { GridColDef } from "@mui/x-data-grid";
-import DataTable from "../../components/dataTable/DataTable";
 import Add from "./AddStudent.tsx";
 import "./../student/student.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../navbar/Navbar.tsx";
 import StudentMenu from "../menu/StudentMenu.tsx";
 import Footer from "../footer/Footer.tsx";
-
+import DataTableV1 from "../dataTable/DataTableV1.tsx";
 
 interface Student {
     id: number;
@@ -38,7 +37,45 @@ const initialRows: Student[] = [];
 const Students = () => {
     const [open, setOpen] = useState(false);
     const [rows, setRows] = useState<Student[]>(initialRows);
+    const [hasStudent, setHasStudent] = useState(false);
 
+    // Fetch student details based on the username from the JWT token
+    useEffect(() => {
+        const fetchStudentData = async () => {
+            const authToken = localStorage.getItem("authToken");
+            if (!authToken) {
+                alert("Authorization token is missing");
+                return;
+            }
+
+            try {
+                // Decode the JWT token to get the username (assuming it's in the payload)
+                const decodedToken: any = JSON.parse(atob(authToken.split('.')[1])); // decode token
+                const username = decodedToken.username;
+
+                // Fetch the student record based on the username
+                const response = await axios.get(
+                    `http://localhost:9999/api/v1/student/${username}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}`,
+                        },
+                    }
+                );
+
+                // If student exists, update the rows and hide the apply button
+                if (response.data) {
+                    setRows([response.data]); // Set the student data in the rows
+                    setHasStudent(true); // Indicate that the student exists
+                }
+            } catch (error) {
+                console.error("Error fetching student data:", error);
+                alert("Error fetching student data.");
+            }
+        };
+
+        fetchStudentData();
+    }, []);
 
     const handleAddStudent = async (formData: FormData) => {
         const authToken = localStorage.getItem("authToken");
@@ -59,15 +96,22 @@ const Students = () => {
                 }
             );
 
-            setRows((prevRows) => [
-                ...prevRows,
+            // After adding the student, fetch the student data
+            const studentId = response.data.id;
+            const updatedResponse = await axios.get(
+                `http://localhost:9999/api/v1/student/${studentId}`,
                 {
-                    id: prevRows.length + 1,
-                    ...response.data,
-                    createdAt: new Date().toISOString(),
-                },
-            ]);
+                    headers: {
+                        Authorization: `Bearer ${authToken}`,
+                    },
+                }
+            );
 
+            // Update the rows with the newly added student data
+            setRows([updatedResponse.data]);
+            setHasStudent(true); // Mark that the student record exists now
+
+            // Close the modal after successful submission
             setOpen(false);
         } catch (error) {
             console.error("Error adding student:", error);
@@ -75,35 +119,38 @@ const Students = () => {
         }
     };
 
-
     return (
         <>
             <div className="main">
-                <Navbar/>
+                <Navbar />
                 <div className="containerStudent">
                     <div className="menuContainer">
-                        <StudentMenu/>
+                        <StudentMenu />
                     </div>
                     <div className="students">
                         <div className="info">
                             <h1>Student Registration</h1>
-                            <button onClick={() => setOpen(true)} className="large-button">Click Here to Apply</button>
+                            {/* Show apply button only if no student data */}
+                            {!hasStudent && (
+                                <button onClick={() => setOpen(true)} className="large-button">
+                                    Click Here to Apply
+                                </button>
+                            )}
                         </div>
-                        <DataTable slug="students" columns={columns} rows={rows}/>
+                        <DataTableV1 columns={columns} rows={rows} />
                         {open && (
                             <Add
                                 slug="Student"
                                 columns={columns}
                                 setOpen={setOpen}
-                                onSubmit={handleAddStudent}/>
+                                onSubmit={handleAddStudent}
+                            />
                         )}
                     </div>
-                    <div className="contentContainer">
-                    </div>
+                    <div className="contentContainer"></div>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
-
         </>
     );
 };

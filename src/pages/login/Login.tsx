@@ -44,7 +44,7 @@ const Login = () => {
 
         auth.login(user); // Pass the user object to AuthProvider
 
-        if (user.role === "Student") {
+        if (user.role === "STUDENT") {
           navigate("/student");
         } else {
           navigate("/");

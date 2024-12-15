@@ -83,9 +83,9 @@ const Register = () => {
                   onChange={(e) => setRole(e.target.value)}
                   required
               >
-                <option value="Student">Student</option>
-                <option value="Staff">Staff</option>
-                <option value="Admin">Admin</option>
+                <option value="STUDENT">Student</option>
+                <option value="STAFF">Staff</option>
+                <option value="ADMIN">Admin</option>
               </select>
             </div>
             <button type="submit" className="login-button" disabled={isSubmitting}>
