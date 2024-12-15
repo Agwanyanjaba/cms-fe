@@ -1,6 +1,6 @@
 import { GridColDef } from "@mui/x-data-grid";
 import "./addStudent.scss";
-import { useAuth } from "../utils/AuthProvider";
+import { useAuth } from "../../utils/AuthProvider";
 
 type Props = {
     slug: string;

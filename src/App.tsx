@@ -13,7 +13,7 @@ import Register from "./pages/register/Register.tsx";
 import "./styles/global.scss";
 import StudentHome from "./pages/studenthome/StudentHome.tsx";
 import StudentForm from "./components/student/Student.tsx";
-import { AuthProvider } from "./components/utils/AuthProvider.tsx";
+import { AuthProvider } from "./utils/AuthProvider.tsx";
 import Landing from "./pages/landing/Landing.tsx";
 import About from "./pages/about/About.tsx";
 import ExploreCourses from "./pages/about/ExploreCourses.tsx";

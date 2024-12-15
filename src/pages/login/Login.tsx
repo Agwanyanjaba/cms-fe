@@ -1,28 +1,25 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { useAuth } from "../../utils/AuthProvider.tsx";
 import "./login.scss";
-import {jwtDecode} from "jwt-decode";
 
 const Login = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:9999";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // React Router hook for navigation
+  const navigate = useNavigate();
+  const auth = useAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const loginData = {
-      username: email, // Map email to "username"
-      password: password,
-    };
+    const loginData = { username: email, password };
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),
       });
 
@@ -32,25 +29,28 @@ const Login = () => {
 
       const result = await response.json();
 
-      // Store the session token (or other data) in localStorage
       if (result.token) {
-        localStorage.setItem("authToken", result.token); // Or use sessionStorage if it's a temporary session
+        localStorage.setItem("authToken", result.token);
         console.log("Login successful, token stored:", result.token);
+
+        const decodedToken: any = jwtDecode(result.token);
+        console.log("Decoded token:", decodedToken);
+
+        const user = {
+          username: decodedToken.username,
+          role: decodedToken.role,
+        };
+        console.log("Logging in user to AuthProvider:", user);
+
+        auth.login(user); // Pass the user object to AuthProvider
+
+        if (user.role === "Student") {
+          navigate("/student");
+        } else {
+          navigate("/");
+        }
       } else {
         throw new Error("No token received from server.");
-      }
-
-      // Decode the token to get the role
-      const decodedToken: any = jwtDecode(result.token); // Decoded payload
-      const role = decodedToken.role;
-      console.log("Decoded token:", decodedToken);
-      console.log("role:", role);
-
-      // Redirect based on role
-      if (role === "Student") {
-        navigate("/student"); // Redirect to student dashboard
-      } else {
-        navigate("/"); // Redirect to home for other roles
       }
     } catch (error) {
       console.error("Error during login:", error);
