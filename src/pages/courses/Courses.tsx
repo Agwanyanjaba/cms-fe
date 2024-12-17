@@ -64,7 +64,9 @@ const Courses = () => {
       ) : (
         <DataTable slug="course" columns={columns} rows={data} />
       )} */}
-            {open && <Add columns={columns} setOpen={setOpen} />}
+            {open &&
+                <Add columns={columns}
+                     setOpen={setOpen} />}
         </div>
     );
 };
