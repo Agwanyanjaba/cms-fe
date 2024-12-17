@@ -4,31 +4,38 @@ import DataTableV1 from "../../components/dataTable/DataTableV1";
 import Navbar from "../../components/navbar/Navbar.tsx";
 import Footer from "../../components/footer/Footer.tsx";
 import Menu from "../../components/menu/Menu.tsx";
+import axiosInstance from "../../utils/axiosInstance.ts";
 
 const StudentsList = () => {
     const authToken = localStorage.getItem("authToken") ?? undefined;
 
     const { data, error, isLoading } = useQuery(
         ["allStudents"],
-        async () => {
-            const response = await axios.get("http://localhost:9999/api/v1/student", {
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
-            });
 
-            return response.data.map((student: any) => ({
-                id: student.id,
-                studentId: student.studentId,
-                name: `${student.firstName} ${student.lastName}`,
-                email: student.appUser?.username || "N/A",
-                gender: student.gender,
-                dateOfBirth: student.dateOfBirth,
-                nationality: student.nationality,
-                courseCode: student.courseCode,
-                phoneNumber: student.phoneNumber,
-                applicationStatus: student.applicationStatus,
-            }));
+        async () => {
+            try {
+                const response = await axiosInstance.get("/api/v1/student", {
+                    headers: {
+                        Authorization: `Bearer ${authToken}`, // Add Authorization header
+                    },
+                });
+                return response.data.map((student: any) => ({
+                    id: student.id,
+                    studentId: student.studentId,
+                    name: `${student.firstName} ${student.lastName}`,
+                    email: student.appUser?.username || "N/A",
+                    gender: student.gender,
+                    dateOfBirth: student.dateOfBirth,
+                    nationality: student.nationality,
+                    courseCode: student.courseCode,
+                    phoneNumber: student.phoneNumber,
+                    applicationStatus: student.applicationStatus,
+                }));
+            }
+            catch (error) {
+                //dialog here
+                console.error("Error fetching student data:", error); // Handle errors
+            }
         }
     );
 

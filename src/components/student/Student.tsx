@@ -2,11 +2,11 @@ import { GridColDef } from "@mui/x-data-grid";
 import Add from "./AddStudent.tsx";
 import "./../student/student.scss";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Navbar from "../navbar/Navbar.tsx";
 import StudentMenu from "../menu/StudentMenu.tsx";
 import Footer from "../footer/Footer.tsx";
 import DataTableV1 from "../dataTable/DataTableV1.tsx";
+import axiosInstance from "../../utils/axiosInstance.ts";
 
 interface Student {
     id: number;
@@ -54,8 +54,8 @@ const Students = () => {
                 const username = decodedToken.username;
 
                 // Fetch the student record based on the username
-                const response = await axios.get(
-                    `http://localhost:9999/api/v1/student/${username}`,
+                const response = await axiosInstance.get(
+                    `/api/v1/student/${username}`,
                     {
                         headers: {
                             Authorization: `Bearer ${authToken}`,
@@ -85,8 +85,8 @@ const Students = () => {
         }
 
         try {
-            const response = await axios.post(
-                "http://localhost:9999/api/v1/student",
+            const response = await axiosInstance.post(
+                "/api/v1/student",
                 formData,
                 {
                     headers: {
@@ -98,8 +98,8 @@ const Students = () => {
 
             // After adding the student, fetch the student data
             const studentId = response.data.id;
-            const updatedResponse = await axios.get(
-                `http://localhost:9999/api/v1/student/${studentId}`,
+            const updatedResponse = await axiosInstance.get(
+                `/api/v1/student/${studentId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${authToken}`,

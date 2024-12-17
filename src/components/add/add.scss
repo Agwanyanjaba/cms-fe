@@ -33,14 +33,14 @@
     form {
       display: flex;
       flex-wrap: wrap;
-      max-width: 500px;
+      max-width: 600px;
       justify-content: space-between;
 
       .item {
-        width: 40%;
+        width: 50%;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
         margin-bottom: 20px;
 
         label {

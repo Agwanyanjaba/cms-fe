@@ -1,76 +1,80 @@
-import Home from "./pages/home/Home";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Staffs from "./pages/users/Staffs.tsx";
+import {createBrowserRouter, Outlet, RouterProvider} from "react-router-dom";
+import HomeScreen from "./pages/landing/Landing.tsx"; // Landing page
+import Staffs from "./pages/users/Staffs.tsx"; // Example other page
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Menu from "./components/menu/Menu";
 import Login from "./pages/login/Login";
-import Staff from "./pages/user/Staff.tsx";
-import Product from "./pages/product/Product";
-import Courses from "./pages/courses/Courses.tsx";
-import Register from "./pages/register/Register.tsx";
-import "./styles/global.scss";
-import StudentHome from "./pages/studenthome/StudentHome.tsx";
-import StudentForm from "./components/student/Student.tsx";
 import { AuthProvider } from "./utils/AuthProvider.tsx";
-import Landing from "./pages/landing/Landing.tsx";
+import Home from "./pages/home/Home";
+import Courses from "./pages/courses/Courses.tsx";
+import StudentsList from "./pages/students/StudentsList.tsx";
 import About from "./pages/about/About.tsx";
 import ExploreCourses from "./pages/about/ExploreCourses.tsx";
-import StudentsList from "./pages/students/StudentsList.tsx";
+import Register from "./pages/register/Register.tsx";
+import Staff from "./pages/user/Staff.tsx";
+import StudentHome from "./pages/studenthome/StudentHome.tsx";
+import StudentForm from "./components/student/Student.tsx";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 // Create the QueryClient instance outside of the Layout component
 const queryClient = new QueryClient();
 
-function App() {
-  const Layout = () => {
+const App = () => {
+    const Layout = () => {
+        return (
+            <div className="main">
+                <Navbar />
+                <div className="container">
+                    <div className="menuContainer">
+                        <Menu />
+                    </div>
+                    <div className="contentContainer">
+                        <Outlet />
+                    </div>
+                </div>
+                <Footer />
+            </div>
+        );
+    };
+
+    const router = createBrowserRouter([
+
+        {
+            path: "/",  // Landing path
+            element: <HomeScreen />,
+            children: [
+                {path: "/landing", element: <HomeScreen/> },
+            ],
+        },
+        { path: "/about-us", element: <About /> },  // About page
+        { path: "/explore-courses", element: <ExploreCourses /> },  // Explore Courses page
+        { path: "/login", element: <Login /> },  // Login page
+        { path: "/register", element: <Register /> },
+        {
+            path: "/home",  // Main app path after login
+            element: <Layout/>,
+            children: [
+                { path: "/home", element: <Home /> },
+                { path: "/home/staff", element: <Staffs /> },
+                { path: "/home/staff/:id", element: <Staff /> },
+                { path: "/home/courses", element: <Courses /> },
+            ],
+        },
+        { path: "/studenthome", element: <StudentHome /> },
+        { path: "/student", element: <StudentForm /> },
+        {path:"/students", element: <StudentsList/>}
+
+    ]);
+
     return (
-        <div className="main">
-          <Navbar />
-          <div className="container">
-            <div className="menuContainer">
-              <Menu />
-            </div>
-            <div className="contentContainer">
-              <Outlet />
-            </div>
-          </div>
-          <Footer />
-        </div>
+        // Wrap your entire application with QueryClientProvider
+        <AuthProvider>
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router} />
+            </QueryClientProvider>
+        </AuthProvider>
     );
-  };
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        { path: "/", element: <Home /> },
-        { path: "/staff", element: <Staffs /> },
-        { path: "/courses", element: <Courses /> },
-        { path: "/staff/:id", element: <Staff /> },
-        { path: "/products/:id", element: <Product /> },
-        { path: "/departments", element: <Product /> },
-      ],
-    },
-    { path: "/login", element: <Login /> },
-    { path: "/register", element: <Register /> },
-    { path: "/studenthome", element: <StudentHome /> },
-    { path: "/student", element: <StudentForm /> },
-    {path:"/landing", element: <Landing/>},
-    {path:"/about-us", element: <About/>},
-    {path:"/explore-courses", element: <ExploreCourses/>},
-    {path:"/students", element: <StudentsList/>}
-  ]);
-
-  return (
-      // Wrap your entire application with QueryClientProvider
-      <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-  </AuthProvider>
-  );
-}
+};
 
 export default App;

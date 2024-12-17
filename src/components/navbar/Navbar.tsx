@@ -22,14 +22,14 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="logo">
-                <img src="kaive.ico" alt="College Logo" />
+                <img src="/kaive.ico" alt="College Logo" />
                 <span>Kaive International Training College</span>
             </div>
             <div className="icons">
                 {auth.user ? (
                     <>
                         <div className="user">
-                            <span>Role: {auth.user.role}</span>
+                            {/*<span>Role: {auth.user.role}</span>*/}
                             <span>Username: {auth.user.username}</span>
                         </div>
                         <button className="large-button" onClick={handleLogout}>

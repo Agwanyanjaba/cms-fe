@@ -6,14 +6,14 @@ export const menu = [
       {
         id: 1,
         title: "Homepage",
-        url: "/",
-        icon: "home.svg",
+        url: "/home",
+        icon: "/home.svg",
       },
       {
         id: 2,
         title: "Profile",
-        url: "/staff/{username}",
-        icon: "user.svg",
+        url: "/home/staff/{username}",
+        icon: "/profile.svg",
       },
     ],
   },
@@ -24,39 +24,39 @@ export const menu = [
       {
         id: 1,
         title: "View All Staff",
-        url: "/staff",
-        icon: "user.svg",
+        url: "/home/staff",
+        icon: "/user.svg",
       },
     ],
   },
   {
     id: 3,
-    title: "Applications",
+    title: "Manage Applications",
     listItems: [
       {
         id: 1,
         title: "View applications",
-        url: "/",
-        icon: "element.svg",
+        url: "/home",
+        icon: "/element.svg",
       },
-      {
-        id: 2,
-        title: "Pending applications",
-        url: "/studentapps",
-        icon: "form.svg",
-      },
-      {
-        id: 3,
-        title: "Filter applications",
-        url: "/",
-        icon: "note.svg",
-      },
-      {
-        id: 4,
-        title: "Approve/decline applications.",
-        url: "/studentapps",
-        icon: "form.svg",
-      }
+      // {
+      //   id: 2,
+      //   title: "Pending applications",
+      //   url: "/home/studentapps",
+      //   icon: "/form.svg",
+      // },
+      // {
+      //   id: 3,
+      //   title: "Filter applications",
+      //   url: "/",
+      //   icon: "note.svg",
+      // },
+      // {
+      //   id: 4,
+      //   title: "Approve/decline applications.",
+      //   url: "/studentapps",
+      //   icon: "form.svg",
+      // }
     ]
   },
   {
@@ -67,20 +67,20 @@ export const menu = [
         id: 1,
         title: "View All Students",
         url: "/students",
-        icon: "element.svg",
+        icon: "/element.svg",
       },
-      {
-        id: 2,
-        title: "Edit Deactivate Student",
-        url: "/deactivate",
-        icon: "note.svg",
-      },
-      {
-        id: 3,
-        title: "Search Student",
-        url: "/studentid",
-        icon: "form.svg",
-      },
+      // {
+      //   id: 2,
+      //   title: "Edit Student Profile",
+      //   url: "/home/deactivate",
+      //   icon: "/note.svg",
+      // },
+      // {
+      //   id: 3,
+      //   title: "Search Student",
+      //   url: "/studentid",
+      //   icon: "form.svg",
+      // },
     ],
   },
   {
@@ -90,21 +90,21 @@ export const menu = [
       {
         id: 1,
         title: "View Courses",
-        url: "/courses",
-        icon: "setting.svg",
+        url: "/home/courses",
+        icon: "/post.svg",
       },
-      {
-        id: 2,
-        title: "Edit Course",
-        url: "/edit/couseid",
-        icon: "backup.svg",
-      },
-      {
-        id: 3,
-        title: "Delete Course",
-        url: "/delete/couseid",
-        icon: "backup.svg",
-      },
+      // {
+      //   id: 2,
+      //   title: "Edit Course",
+      //   url: "/home/edit/couseid",
+      //   icon: "/home/backup.svg",
+      // },
+      // {
+      //   id: 3,
+      //   title: "Delete Course",
+      //   url: "/home/delete/couseid",
+      //   icon: "/home/backup.svg",
+      // },
     ],
   },
   // {
@@ -670,27 +670,23 @@ export const singleUser = {
   },
   activities: [
     {
-      text: "John Doe purchased Playstation 5 Digital Edition",
+      text: "John Doe created new user",
       time: "3 day ago",
     },
     {
-      text: "John Doe added 3 items into their wishlist",
+      text: "John Doe approved student applicationt",
       time: "1 week ago",
     },
     {
-      text: "John Doe purchased Sony Bravia KD-32w800",
+      text: "John Doe added new course",
       time: "2 weeks ago",
     },
     {
-      text: "John Doe reviewed a product",
+      text: "John Doe reviewed a course",
       time: "1 month ago",
     },
     {
-      text: "John Doe added 1 items into their wishlist",
-      time: "1 month ago",
-    },
-    {
-      text: "John Doe reviewed a product",
+      text: "John Doe created a staff",
       time: "2 months ago",
     },
   ],

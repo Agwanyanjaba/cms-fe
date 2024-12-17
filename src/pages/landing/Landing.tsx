@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 const HomeScreen = () => {
     const navigate = useNavigate();
+
     return (
         <>
             <div className="main">
                 {/* Hero Section */}
                 <header className="hero">
                     <div className="logo">
-                        <img src="kaive.ico" alt="Kaive Logo" />
+                        <img src="/kaive.ico" alt="Kaive Logo" />
                         <span>Kaive International Training College</span>
                     </div>
                     <h1>The Simple Act of Caring is Heroic</h1>
@@ -47,28 +48,28 @@ const HomeScreen = () => {
                 {/* Carousel Section */}
                 <div className="carousel">
                     <div className="carousel-track">
-                        <img src="../../../public/caring3.jpg" alt="Slide 1" />
-                        <img src="../../../public/caring4.jpg" alt="Slide 2" />
-                        <img src="../../../public/caring5.jpg" alt="Slide 3" />
-                        <img src="../../../public/caring2.jpg" alt="Slide 4" />
+                        <img src="/caring3.jpg" alt="Slide 1" />
+                        <img src="/caring4.jpg" alt="Slide 2" />
+                        <img src="/caring5.jpg" alt="Slide 3" />
+                        <img src="/caring2.jpg" alt="Slide 4" />
                     </div>
                 </div>
 
-                {/* Adverts Section */}
-                {/*<section className="adverts">*/}
-                {/*    <div className="advert">*/}
-                {/*        <img src="https://via.placeholder.com/200x200" alt="Advert 1" />*/}
-                {/*        <p>Join our top-rated courses today!</p>*/}
-                {/*    </div>*/}
-                {/*    <div className="advert">*/}
-                {/*        <img src="https://via.placeholder.com/200x200" alt="Advert 2" />*/}
-                {/*        <p>Unlock premium content with a subscription.</p>*/}
-                {/*    </div>*/}
-                {/*    <div className="advert">*/}
-                {/*        <img src="https://via.placeholder.com/200x200" alt="Advert 3" />*/}
-                {/*        <p>Sign up and get exclusive offers.</p>*/}
-                {/*    </div>*/}
-                {/*</section>*/}
+                {/* Optional Adverts Section */}
+                <section className="adverts">
+                    <div className="advert">
+                        <img src="https://via.placeholder.com/200x200" alt="Advert 1" />
+                        <p>Join our top-rated courses today!</p>
+                    </div>
+                    <div className="advert">
+                        <img src="https://via.placeholder.com/200x200" alt="Advert 2" />
+                        <p>Unlock premium content with a subscription.</p>
+                    </div>
+                    <div className="advert">
+                        <img src="https://via.placeholder.com/200x200" alt="Advert 3" />
+                        <p>Sign up and get exclusive offers.</p>
+                    </div>
+                </section>
             </div>
             <Footer />
         </>

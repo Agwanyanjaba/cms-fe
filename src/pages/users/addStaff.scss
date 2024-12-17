@@ -1,0 +1,106 @@
+@import "../../styles/variables.scss"; // Ensure this import is correct
+
+.addStaff {
+  .modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background overlay */
+    z-index: 1000;
+  }
+
+  //.close {
+  //  position: absolute;
+  //  top: 15px; /* Position from the top */
+  //  right: 15px; /* Position from the right */
+  //  font-size: 30px; /* Size of the X */
+  //  cursor: pointer;
+  //  color: $main-color; /* Use white for visibility */
+  //  background: none;
+  //  border: none;
+  //  padding: 0;
+  //  margin: 0;
+  //  transition: color 0.3s;
+  //}
+
+  .close {
+    position: absolute;
+    top: 15px; /* Position from the top */
+    right: 15px; /* Position from the right */
+    font-size: 30px; /* Size of the X */
+    cursor: pointer;
+    color: $main-color; /* Use white for visibility */
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    transition: color 0.3s;
+    z-index: 1100; /* Ensure the close button appears above other elements */
+  }
+
+
+  .close:hover {
+    color: #ff3333; /* Change color on hover for better visibility */
+  }
+
+  h1 {
+    color: $main-color; /* Heading color */
+    margin-bottom: 20px;
+  }
+
+  form {
+    background-color: $soft-bg; /* Form background */
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .formItem {
+    margin-bottom: 20px;
+  }
+
+  label {
+    color: $main-color;
+    font-size: 16px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid $dark-bg;
+    border-radius: 5px;
+    background-color: $dark-bg;
+    color: $main-color;
+  }
+
+  button {
+    background-color: #4caf50;
+    color: $main-color;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  /* Focus/Active state for accessibility */
+  input:focus, select:focus, button:focus {
+    outline: none;
+    border: 1px solid $main-color;
+  }
+}

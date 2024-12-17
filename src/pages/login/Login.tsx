@@ -47,7 +47,7 @@ const Login = () => {
         if (user.role === "STUDENT") {
           navigate("/student");
         } else {
-          navigate("/");
+          navigate("/home");
         }
       } else {
         throw new Error("No token received from server.");

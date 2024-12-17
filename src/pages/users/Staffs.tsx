@@ -1,38 +1,63 @@
 import { GridColDef } from "@mui/x-data-grid";
-import "./staffs.scss";
+import "./addStaff.scss";
 import { useState } from "react";
-import Add from "../../components/add/Add";
 import { userRows } from "../../data";
 import DataTableV1 from "../../components/dataTable/DataTableV1.tsx";
-// import { useQuery } from "@tanstack/react-query";
+import AddStaff from "./AddStaff.tsx";
+import axiosInstance from "../../utils/axiosInstance.ts";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 60 },
-  {
-    field: "img",
-    headerName: "Avatar",
-    width: 100,
-    renderCell: (params) => {
-      return <img src={params.row.img || "/noavatar.png"} alt="" />;
-    },
-  },
+  { field: "id", headerName: "ID", width: 70 },
+  // {
+  //   field: "img",
+  //   headerName: "Avatar",
+  //   width: 100,
+  //   renderCell: (params) => {
+  //     return <img src={params.row.img || "/noavatar.png"} alt="Avatar" />;
+  //   },
+  // },
+
   {
     field: "firstName",
     type: "string",
-    headerName: "First name",
-    width: 150,
+    headerName: "First Name",
+    width: 200,
   },
   {
     field: "lastName",
     type: "string",
-    headerName: "Last name",
+    headerName: "Last Name",
+    width: 200,
+  },
+  {
+    field: "gender",
+    type: "string",
+    headerName: "Gender",
+    width: 150,
+  },
+  {
+    field: "idType",
+    type: "string",
+    headerName: "ID Type",
+    width: 150,
+  },
+  {
+    field: "govtIDNumber",
+    type: "string",
+    headerName: "Government ID No.",
+    width: 150,
+  },
+  {
+    field: "basicPay",
+    type: "number",
+    headerName: "Basic Pay",
     width: 150,
   },
   {
     field: "email",
     type: "string",
-    headerName: "Email",
-    width: 200,
+    headerName: "Email Address",
+    width: 300,
   },
   {
     field: "phone",
@@ -42,47 +67,50 @@ const columns: GridColDef[] = [
   },
   {
     field: "createdAt",
-    headerName: "Created At",
-    width: 200,
     type: "string",
-  },
-  {
-    field: "verified",
-    headerName: "Verified",
-    width: 150,
-    type: "boolean",
+    headerName: "Date of Reporting",
+    width: 200,
   },
 ];
 
 const Staffs = () => {
   const [open, setOpen] = useState(false);
 
-  // TEST THE API
+  const handleAddStaff = async (formData: Record<string, string | number | undefined>) => {
+    const authToken = localStorage.getItem("authToken") ?? undefined;
+    try {
+      const response = await axiosInstance.post('/api/v1/staff', formData, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      console.log("Staff added:", response.data);
+      // Optionally close the modal after submission
+      setOpen(false);
+    } catch (error) {
+      console.error("Error adding staff:", error);
+    }
+  };
 
-  // const { isLoading, data } = useQuery({
-  //   queryKey: ["allusers"],
-  //   queryFn: () =>
-  //     fetch("http://localhost:8800/api/users").then(
-  //       (res) => res.json()
-  //     ),
-  // });
 
   return (
-    <div className="users">
-      <div className="info">
-        <h1>Staff</h1>
-        <button onClick={() => setOpen(true)}>Add New Staff</button>
+      <div className="users">
+        <div className="info">
+          <h1>Staff</h1>
+          <button onClick={() => setOpen(true)} className="add-button">
+            Add New Staff
+          </button>
+        </div>
+        <DataTableV1 columns={columns} rows={userRows} />
+        {open && (
+            <AddStaff
+                slug="Staff"
+                columns={columns}
+                setOpen={setOpen}
+                onSubmit={handleAddStaff}
+            />
+        )}
       </div>
-      <DataTableV1 columns={columns} rows={userRows} />
-      {/* TEST THE API */}
-
-      {/* {isLoading ? (
-        "Loading..."
-      ) : (
-        <DataTable slug="users" columns={columns} rows={data} />
-      )} */}
-      {open && <Add columns={columns} setOpen={setOpen} />}
-    </div>
   );
 };
 

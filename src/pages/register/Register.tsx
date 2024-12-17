@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.scss";
+import SuccessDialog from "../../components/dialogs/AppSuccessDialog.tsx";
 
 // Store the base URL in .env
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:9999"; // Default to localhost if not in .env
@@ -11,6 +12,7 @@ const Register = () => {
   const [role, setRole] = useState("Student");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false); // State for dialog
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,8 +40,14 @@ const Register = () => {
         throw new Error(responseData.message || "Registration failed");
       }
 
-      // If registration is successful, redirect to the login page
-      navigate("/login");
+      // If registration is successful, show the success dialog
+      setDialogOpen(true);
+
+      // After a short delay, redirect to login
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000); // 2-second delay before redirecting
+
     } catch (err: any) {
       setError(err.message || "An error occurred");
     } finally {
@@ -93,6 +101,14 @@ const Register = () => {
             </button>
           </form>
         </div>
+        {/* Success dialog */}
+        {dialogOpen && (
+            <SuccessDialog
+                open={dialogOpen}
+                message={`The user account has been created successfully. Please proceed to login with the details sent to your email address`}
+                onClose={() => setDialogOpen(false)} // Close dialog after success
+            />
+        )}
       </div>
   );
 };
