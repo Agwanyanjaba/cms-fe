@@ -16,12 +16,12 @@ type Props = {
 };
 
 const DataTableV1 = ({
-                       columns,
-                       rows,
-                       deleteEndpoint,
-                       detailPath,
-                       authToken,
-                   }: Props) => {
+                         columns,
+                         rows,
+                         deleteEndpoint,
+                         detailPath,
+                         authToken,
+                     }: Props) => {
     const queryClient = useQueryClient();
 
     // Mutation for delete
