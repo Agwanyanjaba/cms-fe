@@ -8,14 +8,14 @@ import axiosInstance from "../../utils/axiosInstance.ts";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
-  // {
-  //   field: "img",
-  //   headerName: "Avatar",
-  //   width: 100,
-  //   renderCell: (params) => {
-  //     return <img src={params.row.img || "/noavatar.png"} alt="Avatar" />;
-  //   },
-  // },
+  {
+    field: "img",
+    headerName: "Avatar",
+    width: 100,
+    renderCell: (params) => {
+      return <img src={params.row.img || "/noavatar.png"} alt="Avatar" />;
+    },
+  },
 
   {
     field: "firstName",
@@ -104,8 +104,8 @@ const Staffs = () => {
         <DataTableV1 columns={columns} rows={userRows} />
         {open && (
             <AddStaff
-                slug="Staff"
-                columns={columns}
+                // slug="Staff"
+                // columns={columns}
                 setOpen={setOpen}
                 onSubmit={handleAddStaff}
             />
